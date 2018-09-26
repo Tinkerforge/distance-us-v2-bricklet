@@ -34,7 +34,7 @@
   )
 
   (setup
-    (last_trace_width 0.25)
+    (last_trace_width 0.15)
     (user_trace_width 0.25)
     (user_trace_width 0.3)
     (user_trace_width 0.5)
@@ -824,6 +824,11 @@
       (net 2 GND))
     (pad "" np_thru_hole circle (at -8.54 -5.34) (size 3.2 3.2) (drill 3.2) (layers *.Cu *.Mask))
     (pad "" np_thru_hole circle (at 8.46 7.26) (size 3.2 3.2) (drill 3.2) (layers *.Cu *.Mask))
+    (model ${KICAD_SYMBOL_DIR}/3d/Sensors_Detectors/HRLV-EZ.step
+      (at (xyz 0 0 0))
+      (scale (xyz 1 1 1))
+      (rotate (xyz 0 0 0))
+    )
   )
 
   (module kicad-libraries:Logo_31x31 (layer B.Cu) (tedit 4F1D86B0) (tstamp 5BABE3D7)
