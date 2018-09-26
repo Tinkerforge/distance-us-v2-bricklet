@@ -336,7 +336,7 @@ NoConn ~ 3600 5900
 Text Notes 4450 3650 0    47   ~ 0
 SPI Slave/CH0\nP0.13 : USIC0_CH0-DX2F : SEL\nP0.14 : USIC0_CH0-DX1A : CLK\nP0.15 : USIC0_CH0-DX0B : MOSI\nP2.0 : USIC0_CH0-DOUT0 : MISO
 Text Notes 4450 3150 0    47   ~ 0
-I2C Master/CH1\nP0.6 :USIC0_CH1-DOUT0/DX0C : SDA\nP0.8: USIC0_CH1-SCLKOUT/DX1B : SCL
+Serial\nP0.6 :USIC0_CH1-DX0C : RX
 Text Notes 550  7750 0    40   ~ 0
 Copyright Tinkerforge GmbH 2018.\nThis documentation describes Open Hardware and is licensed under the\nCERN OHL v. 1.1.\nYou may redistribute and modify this documentation under the terms of the\nCERN OHL v.1.1. (http://ohwr.org/cernohl). This documentation is distributed\nWITHOUT ANY EXPRESS OR IMPLIED WARRANTY, INCLUDING OF\nMERCHANTABILITY, SATISFACTORY QUALITY AND FITNESS FOR A\nPARTICULAR PURPOSE. Please see the CERN OHL v.1.1 for applicable\nconditions\n
 NoConn ~ 3600 6000
@@ -542,18 +542,16 @@ Wire Wire Line
 	8500 2550 8500 2700
 Wire Wire Line
 	8500 2150 8650 2150
-Text GLabel 9750 1850 0    39   Output ~ 0
+Text GLabel 9300 1850 0    39   Output ~ 0
 Serial
-Text GLabel 8950 1750 0    39   Output ~ 0
+Text GLabel 9300 1750 0    39   Input ~ 0
 Ranging
-Wire Wire Line
-	9750 1850 10000 1850
 Text GLabel 3250 3200 0    39   Input ~ 0
 Serial
 Wire Wire Line
 	3600 3200 3250 3200
 NoConn ~ 3600 3400
-Text GLabel 3250 3300 0    39   Input ~ 0
+Text GLabel 3250 3300 0    39   Output ~ 0
 Ranging
 Wire Wire Line
 	3600 3300 3250 3300
@@ -589,7 +587,7 @@ U 1 1 5BACEFE0
 P 8200 2150
 F 0 "L?" H 8200 2397 60  0000 C CNN
 F 1 "FB" H 8200 2291 60  0000 C CNN
-F 2 "R0603E" H 8200 2150 60  0001 C CNN
+F 2 "R0603F" H 8200 2150 60  0001 C CNN
 F 3 "" H 8200 2150 60  0001 C CNN
 	1    8200 2150
 	1    0    0    -1  
@@ -621,17 +619,19 @@ Wire Wire Line
 $Comp
 L tinkerforge:R R?
 U 1 1 5BAD6590
-P 9300 1750
-F 0 "R?" V 9092 1750 50  0000 C CNN
-F 1 "1k" V 9183 1750 50  0000 C CNN
-F 2 "kicad-libraries:R0603F" H 9300 1750 60  0001 C CNN
-F 3 "" H 9300 1750 60  0000 C CNN
-	1    9300 1750
+P 9650 1850
+F 0 "R?" V 9750 1750 50  0000 C CNN
+F 1 "1k" V 9650 1850 50  0000 C CNN
+F 2 "kicad-libraries:R0603F" H 9650 1850 60  0001 C CNN
+F 3 "" H 9650 1850 60  0000 C CNN
+	1    9650 1850
 	0    1    1    0   
 $EndComp
-Wire Wire Line
-	9050 1750 8950 1750
-Wire Wire Line
-	9550 1750 10000 1750
 NoConn ~ 3600 5500
+Wire Wire Line
+	9300 1850 9400 1850
+Wire Wire Line
+	9900 1850 10000 1850
+Wire Wire Line
+	9300 1750 10000 1750
 $EndSCHEMATC
