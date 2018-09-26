@@ -1,4 +1,4 @@
-Distance US Bricklet 3.0
+Distance US Bricklet 2.0
 ========================
 
 **This Bricklet is currently in development.**
@@ -12,12 +12,12 @@ Repository Content
 
 software/:
  * examples/: Examples for all supported languages
- * build/: Makefile and compiled files
+ * build/: Compiled files
  * src/: Source code of firmware
- * generate_makefile: Shell script to generate Makefile from cmake script
+ * Makefile: Makefile to build project
 
 hardware/:
- * Contains kicad project files and additionally schematics as pdf
+ * Contains KiCad project files and additionally schematics as PDF
 
 datasheets/:
  * Contains datasheets for sensors and complex ICs that are used
@@ -32,7 +32,7 @@ you have to install the Tinkerforge kicad-libraries
 them directly in hardware/ or clone them in a separate folder and
 symlink them into hardware/
 (ln -s kicad_path/kicad-libraries project_path/hardware). After that you
-can open the .pro file in hardware/ with kicad and from there view and
+can open the .pro file in hardware/ with KiCad and from there view and
 modify the schematics and the PCB layout.
 
 Software
@@ -51,8 +51,6 @@ separate folder and symlink it into software/src/
 (ln -s bricklib_path/bricklib2 project_path/software/src/). Finally make sure to
 have CMake installed (http://www.cmake.org/cmake/resources/software.html).
 
-After that you can generate a Makefile from the cmake script with the
-generate_makefile shell script (in software/) and build the firmware
-by invoking make in software/build/. The firmware (.zbin) can then be found
-in software/build/ and uploaded with brickv (click button "Flashing"
-on start screen).
+After that you can build the firmware by invoking make in software/.
+The firmware (.zbin) can then be found in software/build/ and uploaded
+with brickv (click button "Flashing" on start screen).
