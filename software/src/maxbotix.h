@@ -25,11 +25,18 @@
 #include <stdint.h>
 #include <stdbool.h>
 
+#define MAXBOTIX_UPDATE_RATE_2HZ  0
+#define MAXBOTIX_UPDATE_RATE_10HZ 1
+
 typedef struct {
     bool enable;
     uint8_t state;
     uint16_t value;
     uint16_t distance;
+
+    uint8_t update_rate;
+    bool hz10_active;
+    uint32_t hz10_time;
 } Maxbotix;
 
 extern Maxbotix maxbotix;

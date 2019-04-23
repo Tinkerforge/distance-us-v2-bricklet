@@ -22,15 +22,15 @@
 #ifndef CONFIG_MAXBOTIX_H
 #define CONFIG_MAXBOTIX_H
 
-#define MAXBOTIX_ENABLE_PIN          P0_6
+#define MAXBOTIX_ENABLE_PIN          P0_7
 #define MAXBOTIX_LED_PIN             P1_0
 
 #define MAXBOTIX_USIC_CHANNEL        USIC0_CH1
 #define MAXBOTIX_USIC                XMC_UART0_CH1
 
-#define MAXBOTIX_RX_PIN              P0_7
+#define MAXBOTIX_RX_PIN              P0_6
 #define MAXBOTIX_RX_INPUT            XMC_USIC_CH_INPUT_DX0
-#define MAXBOTIX_RX_SOURCE           0b011 // DX0D
+#define MAXBOTIX_RX_SOURCE           0b010 // DX0C
 
 #define MAXBOTIX_SERVICE_REQUEST_RX  2  // receive
 

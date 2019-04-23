@@ -22,6 +22,7 @@
 #include "maxbotix.h"
 
 #include "configs/config_maxbotix.h"
+#include "bricklib2/hal/system_timer/system_timer.h"
 
 #include "xmc_uart.h"
 #include "xmc_gpio.h"
@@ -36,6 +37,9 @@ void maxbotix_parse(const char data) {
 			maxbotix.value = 0;
 
 			if(data == 'R') {
+				if(maxbotix.update_rate == MAXBOTIX_UPDATE_RATE_10HZ) {
+					XMC_GPIO_SetOutputLow(MAXBOTIX_ENABLE_PIN);
+				}
 				maxbotix.state = 1;
 			}
 
@@ -48,6 +52,11 @@ void maxbotix_parse(const char data) {
 			} else {
 				if(data == '\r') {
 					maxbotix.distance = maxbotix.value;
+
+					if(maxbotix.update_rate == MAXBOTIX_UPDATE_RATE_10HZ) {
+						maxbotix.hz10_active = true;
+						maxbotix.hz10_time = system_timer_get_ms();
+					}
 				}
 				maxbotix.state = 0;
 			}
@@ -66,6 +75,14 @@ void __attribute__((optimize("-O3"))) __attribute__ ((section (".ram_code"))) ma
 
 
 void maxbotix_tick(void) {
+	if(maxbotix.hz10_active) {
+		if(system_timer_is_time_elapsed_ms(maxbotix.hz10_time, 2)) {
+			maxbotix.hz10_active = false;
+			if(maxbotix.enable) {
+				XMC_GPIO_SetOutputHigh(MAXBOTIX_ENABLE_PIN);
+			}
+		}
+	}
 	// TODO: Distance LED
 }
 
