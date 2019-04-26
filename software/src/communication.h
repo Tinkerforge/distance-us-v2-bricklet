@@ -40,6 +40,14 @@ void communication_init(void);
 #define DISTANCE_US_V2_THRESHOLD_OPTION_SMALLER '<'
 #define DISTANCE_US_V2_THRESHOLD_OPTION_GREATER '>'
 
+#define DISTANCE_US_V2_UPDATE_RATE_2_HZ 0
+#define DISTANCE_US_V2_UPDATE_RATE_10_HZ 1
+
+#define DISTANCE_US_V2_DISTANCE_LED_CONFIG_OFF 0
+#define DISTANCE_US_V2_DISTANCE_LED_CONFIG_ON 1
+#define DISTANCE_US_V2_DISTANCE_LED_CONFIG_SHOW_HEARTBEAT 2
+#define DISTANCE_US_V2_DISTANCE_LED_CONFIG_SHOW_DISTANCE 3
+
 #define DISTANCE_US_V2_BOOTLOADER_MODE_BOOTLOADER 0
 #define DISTANCE_US_V2_BOOTLOADER_MODE_FIRMWARE 1
 #define DISTANCE_US_V2_BOOTLOADER_MODE_BOOTLOADER_WAIT_FOR_REBOOT 2
@@ -62,13 +70,47 @@ void communication_init(void);
 #define FID_GET_DISTANCE 1
 #define FID_SET_DISTANCE_CALLBACK_CONFIGURATION 2
 #define FID_GET_DISTANCE_CALLBACK_CONFIGURATION 3
+#define FID_SET_UPDATE_RATE 5
+#define FID_GET_UPDATE_RATE 6
+#define FID_SET_DISTANCE_LED_CONFIG 7
+#define FID_GET_DISTANCE_LED_CONFIG 8
 
 #define FID_CALLBACK_DISTANCE 4
 
+typedef struct {
+	TFPMessageHeader header;
+	uint8_t update_rate;
+} __attribute__((__packed__)) SetUpdateRate;
+
+typedef struct {
+	TFPMessageHeader header;
+} __attribute__((__packed__)) GetUpdateRate;
+
+typedef struct {
+	TFPMessageHeader header;
+	uint8_t update_rate;
+} __attribute__((__packed__)) GetUpdateRate_Response;
+
+typedef struct {
+	TFPMessageHeader header;
+	uint8_t config;
+} __attribute__((__packed__)) SetDistanceLEDConfig;
+
+typedef struct {
+	TFPMessageHeader header;
+} __attribute__((__packed__)) GetDistanceLEDConfig;
+
+typedef struct {
+	TFPMessageHeader header;
+	uint8_t config;
+} __attribute__((__packed__)) GetDistanceLEDConfig_Response;
 
 
 // Function prototypes
-
+BootloaderHandleMessageResponse set_update_rate(const SetUpdateRate *data);
+BootloaderHandleMessageResponse get_update_rate(const GetUpdateRate *data, GetUpdateRate_Response *response);
+BootloaderHandleMessageResponse set_distance_led_config(const SetDistanceLEDConfig *data);
+BootloaderHandleMessageResponse get_distance_led_config(const GetDistanceLEDConfig *data, GetDistanceLEDConfig_Response *response);
 
 // Callbacks
 bool handle_distance_callback(void);

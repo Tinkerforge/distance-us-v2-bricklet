@@ -24,6 +24,7 @@
 
 #define MAXBOTIX_ENABLE_PIN          P0_7
 #define MAXBOTIX_LED_PIN             P1_0
+#define MAXBOTIX_LED_CCU4_SLICE      0
 
 #define MAXBOTIX_USIC_CHANNEL        USIC0_CH1
 #define MAXBOTIX_USIC                XMC_UART0_CH1

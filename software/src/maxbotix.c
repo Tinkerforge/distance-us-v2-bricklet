@@ -23,9 +23,14 @@
 
 #include "configs/config_maxbotix.h"
 #include "bricklib2/hal/system_timer/system_timer.h"
+#include "bricklib2/utility/util_definitions.h"
+#include "bricklib2/hal/ccu4_pwm/ccu4_pwm.h"
 
 #include "xmc_uart.h"
 #include "xmc_gpio.h"
+
+#include "communication.h"
+
 
 #define maxbotix_rx_irq_handler  IRQ_Hdlr_11
 
@@ -83,6 +88,12 @@ void maxbotix_tick(void) {
 			}
 		}
 	}
+
+	if(maxbotix.led.config == DISTANCE_US_V2_DISTANCE_LED_CONFIG_SHOW_DISTANCE) {
+		ccu4_pwm_set_duty_cycle(MAXBOTIX_LED_CCU4_SLICE, 1000 - BETWEEN(0, maxbotix.distance-300, 1000));
+	} else {
+		led_flicker_tick(&maxbotix.led, system_timer_get_ms(), MAXBOTIX_LED_PIN);
+	}
 	// TODO: Distance LED
 }
 
@@ -132,6 +143,7 @@ void maxbotix_init_uart(void) {
 void maxbotix_init(void) {
 	memset(&maxbotix, 0, sizeof(Maxbotix));
 
+	maxbotix.led.config = DISTANCE_US_V2_DISTANCE_LED_CONFIG_SHOW_DISTANCE;
 	maxbotix.enable = true;
 	XMC_GPIO_CONFIG_t pin_config = {
 		.mode             = XMC_GPIO_MODE_OUTPUT_PUSH_PULL,
@@ -139,7 +151,7 @@ void maxbotix_init(void) {
 	};
 
 	XMC_GPIO_Init(MAXBOTIX_ENABLE_PIN, &pin_config);
-
+	ccu4_pwm_init(MAXBOTIX_LED_PIN, MAXBOTIX_LED_CCU4_SLICE, 1000);
 	maxbotix_init_uart();
 }
 

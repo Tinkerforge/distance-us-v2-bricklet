@@ -25,6 +25,8 @@
 #include <stdint.h>
 #include <stdbool.h>
 
+#include "bricklib2/utility/led_flicker.h"
+
 #define MAXBOTIX_UPDATE_RATE_2HZ  0
 #define MAXBOTIX_UPDATE_RATE_10HZ 1
 
@@ -37,6 +39,8 @@ typedef struct {
     uint8_t update_rate;
     bool hz10_active;
     uint32_t hz10_time;
+
+	LEDFlickerState led;
 } Maxbotix;
 
 extern Maxbotix maxbotix;
