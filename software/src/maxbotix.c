@@ -94,7 +94,6 @@ void maxbotix_tick(void) {
 	} else {
 		led_flicker_tick(&maxbotix.led, system_timer_get_ms(), MAXBOTIX_LED_PIN);
 	}
-	// TODO: Distance LED
 }
 
 void maxbotix_init_uart(void) {
