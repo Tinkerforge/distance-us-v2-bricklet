@@ -1,0 +1,10 @@
+# Change XYZ to the UID of your Distance US Bricklet 2.0
+
+setup:
+	# Handle incoming distance callbacks
+	subscribe to tinkerforge/callback/distance_us_v2_bricklet/XYZ/distance
+	publish '{"register": true}' to tinkerforge/register/distance_us_v2_bricklet/XYZ/distance # Register distance callback
+	
+	# Configure threshold for distance "greater than 100 cm"
+	# with a debounce period of 0.1s (100ms)
+	publish '{"period": 100, "value_has_to_change": false, "option": "greater", "min": 1000, "max": 0}' to tinkerforge/request/distance_us_v2_bricklet/XYZ/set_distance_callback_configuration

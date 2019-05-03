@@ -1,0 +1,41 @@
+Notebook[{
+ Cell[
+  BoxData[{
+   RowBox[{"Needs", "[", "\"\<NETLink`\>\"", "]"}],
+   RowBox[{"LoadNETAssembly", "[", RowBox[{"\"\<Tinkerforge\>\"", ",", RowBox[{RowBox[{"NotebookDirectory", "[", "]"}], "<>", "\"\<../../..\>\""}]}], "]"}]
+  }], "Input"
+ ],
+ Cell[
+  BoxData[{
+   RowBox[{"host", "=", "\"\<localhost\>\""}],
+   RowBox[{"port", "=", "4223"}],
+   RowBox[{"uid", "=", "\"\<XYZ\>\"", RowBox[{"(*", "Change XYZ to the UID of your Distance US Bricklet 2.0", "*)"}]}],
+   RowBox[{"
+"}],
+   RowBox[{"(*", "Create IPConnection and device object", "*)"}],
+   RowBox[{"ipcon", "=", RowBox[{"NETNew", "[", "\"\<Tinkerforge.IPConnection\>\"", "]"}]}],
+   RowBox[{"dus", "=", RowBox[{"NETNew", "[", RowBox[{"\"\<Tinkerforge.BrickletDistanceUSV2\>\"", ",", "uid", ",", "ipcon"}], "]"}]}],
+   RowBox[{"ipcon", "@", RowBox[{"Connect", "[", RowBox[{"host", ",", "port"}], "]"}]}],
+   RowBox[{"
+"}],
+   RowBox[{"(*", "Callback function for distance callback", "*)"}],
+   RowBox[{RowBox[{"DistanceCB", "[", RowBox[{"sender_", ",", "distance_"}], "]"}], ":=", "\[IndentingNewLine]", RowBox[{"Print", "[", RowBox[{"\"\<Distance: \>\"", "<>", RowBox[{"ToString", "[", RowBox[{"N", "[", RowBox[{"Quantity", "[", RowBox[{"distance", ",", "\"\<cm/10\>\""}], "]"}], "]"}], "]"}]}], "]"}]}],
+   RowBox[{"AddEventHandler", "[", RowBox[{RowBox[{"dus", "@", "DistanceCallback"}], ",", "DistanceCB"}], "]"}],
+   RowBox[{"
+"}],
+   RowBox[{"(*", "Configure threshold for distance ", "\"\<greater than 100 cm\>\"", "", "*)"}],
+   RowBox[{"(*", "with a debounce period of 0.1s (100ms)", "*)"}],
+   RowBox[{"option", "=", "Tinkerforge`BrickletDistanceUSV2`THRESHOLDUOPTIONUGREATER"}],
+   RowBox[{"dus", "@", RowBox[{"SetDistanceCallbackConfiguration", "[", RowBox[{"100", ",", "False", ",", "option", ",", RowBox[{"100", "*", "10"}], ",", "0"}], "]"}]}],
+   RowBox[{"
+"}],
+   RowBox[{"Input", "[", "\"\<Click OK to exit\>\"", "]"}],
+   RowBox[{"
+"}],
+   RowBox[{"(*", "Clean up", "*)"}],
+   RowBox[{"ipcon", "@", RowBox[{"Disconnect", "[", "]"}]}],
+   RowBox[{"ReleaseNETObject", "[", "dus", "]"}],
+   RowBox[{"ReleaseNETObject", "[", "ipcon", "]"}]
+  }], "Input"
+ ]
+}]

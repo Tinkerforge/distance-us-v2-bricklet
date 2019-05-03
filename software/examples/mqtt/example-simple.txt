@@ -1,0 +1,6 @@
+# Change XYZ to the UID of your Distance US Bricklet 2.0
+
+setup:
+	# Get current distance
+	subscribe to tinkerforge/response/distance_us_v2_bricklet/XYZ/get_distance
+	publish '' to tinkerforge/request/distance_us_v2_bricklet/XYZ/get_distance
