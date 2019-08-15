@@ -221,6 +221,11 @@
       (net 2 GND))
     (pad "" smd circle (at -8.44 6.12 180) (size 3.8 3.8) (layers B.Cu B.Paste B.Mask))
     (pad "" smd circle (at 8.56 -6.48 180) (size 3.8 3.8) (layers B.Cu B.Paste B.Mask))
+    (model unsorted/HRLV.step
+      (offset (xyz 11.1 11 0))
+      (scale (xyz 1 1 1))
+      (rotate (xyz 0 0 180))
+    )
   )
 
   (module C0603F (layer F.Cu) (tedit 58F5DD02) (tstamp 5C91324C)
