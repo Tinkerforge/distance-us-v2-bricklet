@@ -33,7 +33,7 @@ int main(void) {
 	// Register distance callback to function cb_distance
 	distance_us_v2_register_callback(&dus,
 	                                 DISTANCE_US_V2_CALLBACK_DISTANCE,
-	                                 (void *)cb_distance,
+	                                 (void (*)(void))cb_distance,
 	                                 NULL);
 
 	// Set period for distance callback to 0.1s (100ms) without a threshold
