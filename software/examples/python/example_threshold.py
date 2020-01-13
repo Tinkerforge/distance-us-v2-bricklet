@@ -26,5 +26,5 @@ if __name__ == "__main__":
     # with a debounce period of 0.1s (100ms)
     dus.set_distance_callback_configuration(100, False, ">", 100*10, 0)
 
-    raw_input("Press key to exit\n") # Use input() in Python 3
+    input("Press key to exit\n") # Use raw_input() in Python 2
     ipcon.disconnect()
