@@ -1,5 +1,3 @@
-
-
 #include "bindings/hal_common.h"
 #include "bindings/bricklet_distance_us_v2.h"
 
@@ -7,15 +5,12 @@
 
 void check(int rc, const char* msg);
 
-
-
 // Callback function for distance callback
 void distance_handler(TF_DistanceUSV2 *device, uint16_t distance, void *user_data) {
 	(void)device; (void)user_data; // avoid unused parameter warning
 
 	tf_hal_printf("Distance: %d 1/%d cm\n", distance, 10.0);
 }
-
 
 TF_DistanceUSV2 dus;
 
