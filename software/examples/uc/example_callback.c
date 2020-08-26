@@ -18,15 +18,13 @@ void example_setup(TF_HalContext *hal) {
 	// Create device object
 	check(tf_distance_us_v2_create(&dus, UID, hal), "create device object");
 
-
 	// Register distance callback to function distance_handler
 	tf_distance_us_v2_register_distance_callback(&dus,
-	                                            distance_handler,
-	                                            NULL);
+	                                             distance_handler,
+	                                             NULL);
 
 	// Set period for distance callback to 0.1s (100ms) without a threshold
 	tf_distance_us_v2_set_distance_callback_configuration(&dus, 100, false, 'x', 0, 0);
-
 }
 
 void example_loop(TF_HalContext *hal) {
