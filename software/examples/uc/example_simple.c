@@ -23,7 +23,7 @@ void example_setup(TF_HalContext *hal) {
 	uint16_t distance;
 	check(tf_distance_us_v2_get_distance(&dus, &distance), "get distance");
 
-	tf_hal_printf("Distance: %d 1/%d cm\n", distance, 10.0);
+	tf_hal_printf("Distance: %d 1/%d cm\n", distance, 10);
 }
 
 void example_loop(TF_HalContext *hal) {
