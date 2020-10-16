@@ -18,7 +18,7 @@ static void distance_handler(TF_DistanceUSV2 *device, uint16_t distance,
                              void *user_data) {
 	(void)device; (void)user_data; // avoid unused parameter warning
 
-	tf_hal_printf("Distance: %d 1/%d cm\n", distance, 10.0);
+	tf_hal_printf("Distance: %d 1/%d cm\n", distance, 10);
 }
 
 static TF_DistanceUSV2 dus;
