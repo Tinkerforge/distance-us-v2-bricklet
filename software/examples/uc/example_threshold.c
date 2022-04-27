@@ -1,17 +1,13 @@
 // This example is not self-contained.
-// It requres usage of the example driver specific to your platform.
+// It requires usage of the example driver specific to your platform.
 // See the HAL documentation.
 
-#include "bindings/hal_common.h"
-#include "bindings/bricklet_distance_us_v2.h"
+#include "src/bindings/hal_common.h"
+#include "src/bindings/bricklet_distance_us_v2.h"
 
-#define UID "XYZ" // Change XYZ to the UID of your Distance US Bricklet 2.0
-
-void check(int rc, const char* msg);
-
+void check(int rc, const char *msg);
 void example_setup(TF_HAL *hal);
 void example_loop(TF_HAL *hal);
-
 
 // Callback function for distance callback
 static void distance_handler(TF_DistanceUSV2 *device, uint16_t distance,
@@ -25,7 +21,7 @@ static TF_DistanceUSV2 dus;
 
 void example_setup(TF_HAL *hal) {
 	// Create device object
-	check(tf_distance_us_v2_create(&dus, UID, hal), "create device object");
+	check(tf_distance_us_v2_create(&dus, NULL, hal), "create device object");
 
 	// Register distance callback to function distance_handler
 	tf_distance_us_v2_register_distance_callback(&dus,
